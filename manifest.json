@@ -1,0 +1,12 @@
+{
+    "display_name": "Group DMs",
+    "loading_order": 60,
+    "requires": [],
+    "optional": ["Extension-Summaryception"],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "local",
+    "version": "1.0.0",
+    "homePage": "",
+    "auto_update": false
+}
