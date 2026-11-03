@@ -4,8 +4,29 @@
 import { updateMessageBlock } from '../../../../script.js';
 
 const MODULE = 'group-dms';
-const EXT_PATH = 'third-party/st-group-dms';
 const RULE_KEY = 'group_dms_rule';
+
+// Settings panel markup lives here so the extension is just these JS/CSS files.
+const SETTINGS_HTML = `
+<div class="gdm-settings inline-drawer">
+    <div class="inline-drawer-toggle inline-drawer-header">
+        <b>Group DMs</b>
+        <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+    </div>
+    <div class="inline-drawer-content">
+        <label class="checkbox_label"><input type="checkbox" id="gdm_enabled"> Enabled</label>
+        <label>Main character
+            <select id="gdm_main" class="text_pole"><option value="">(none)</option></select>
+        </label>
+        <label>Group summaries to share
+            <input type="number" id="gdm_count" class="text_pole" min="1" max="20">
+        </label>
+        <label>DM note
+            <textarea id="gdm_note" class="text_pole" rows="4"></textarea>
+        </label>
+        <button id="gdm_clear" class="menu_button">Clear DM history</button>
+    </div>
+</div>`;
 const MAX_HISTORY = 40;
 const DM_TAG = /\[DM:\s*([\s\S]+?)\]/g;
 
@@ -296,8 +317,7 @@ function bindSettings() {
 
 jQuery(async () => {
     const c = ctx();
-    const html = await c.renderExtensionTemplateAsync(EXT_PATH, 'settings');
-    $('#extensions_settings2').append(html);
+    $('#extensions_settings2').append(SETTINGS_HTML);
 
     bindSettings();
     refreshMainOptions();
